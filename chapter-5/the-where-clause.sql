@@ -26,3 +26,39 @@ SELECT	P.person_last_name
 FROM	Person							P
 WHERE	P.person_first_name	=			'Jon'		
 OR		P.person_contacted_number >		0
+
+-- Who are all the people in my contact list that I have contacted at least once but no more than 20 times?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_contacted_number	BETWEEN		1 AND 20;
+
+-- Who are all the people in my contact list that have a first name that begins with the letter J?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_first_name			LIKE		'J%';
+
+-- Who are all the people in my contact list that have a first name that contains the letter o?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_first_name			LIKE		'%o%';
+
+-- Who are all the people in my contact list that are named Jon or Fritz?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_first_name			IN			('Jon', 'Fritz');
+
+-- Who are all the people in my contact list that don't have a last name?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_last_name			IS			NULL;
+
+-- Who are all the people in my contact list that have a last name?
+SELECT	P.person_first_name,
+		P.person_last_name
+FROM	person						P			WITH(NOLOCK)
+WHERE	P.person_last_name			IS NOT		NULL;
